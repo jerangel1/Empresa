@@ -204,7 +204,7 @@ export function BranchCard({ branch, onEdit, onDelete }: BranchCardProps) {
                       )
                     )?.name}</TableCell>
                     <TableCell>
-                      <Badge variant={employee.isActive ? "success" : "destructive"}>
+                      <Badge variant={employee.isActive ? "default" : "destructive"}>
                         {employee.isActive ? "Activo" : "Inactivo"}
                       </Badge>
                     </TableCell>
@@ -217,11 +217,10 @@ export function BranchCard({ branch, onEdit, onDelete }: BranchCardProps) {
       </Dialog>
       <AreaDetailsModal
         area={selectedArea}
-        branchName={branch.name}
         isOpen={!!selectedArea}
+        branchName={branch.name}
         onClose={() => setSelectedArea(null)}
       />
     </>
   )
 }
-

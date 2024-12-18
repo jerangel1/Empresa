@@ -1,4 +1,4 @@
-import { Transaction } from "@/types/finance"
+import { Transaction } from "@/app/types/finance"
 import {
   Dialog,
   DialogContent,
@@ -47,7 +47,7 @@ export function TransactionDetailsModal({
             <CardContent className="grid gap-4 pt-6">
               <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
                 <div className="flex items-center gap-2">
-                  <Badge variant={isIncome ? "success" : "destructive"} className="text-sm px-2 py-1">
+                  <Badge variant={isIncome ? "default" : "destructive"} className="text-sm px-2 py-1">
                     {isIncome ? 'Ingreso' : 'Egreso'}
                   </Badge>
                   <span className="text-2xl font-bold">${transaction.amount.toLocaleString()}</span>

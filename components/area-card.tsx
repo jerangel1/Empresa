@@ -53,7 +53,7 @@ export function AreaCard({ area }: AreaCardProps) {
                   <div className="flex items-center space-x-2">
                     <CreditCard className="h-4 w-4" />
                     <span>{register.name}</span>
-                    <Badge variant={register.isActive ? "success" : "destructive"}>
+                    <Badge variant={register.isActive ? "default" : "destructive"}>
                       {register.isActive ? "Activa" : "Inactiva"}
                     </Badge>
                   </div>
@@ -67,7 +67,7 @@ export function AreaCard({ area }: AreaCardProps) {
                           <AvatarFallback>{cashier.name.charAt(0)}</AvatarFallback>
                         </Avatar>
                         <span>{cashier.name}</span>
-                        <Badge variant={cashier.isActive ? "success" : "destructive"}>
+                        <Badge variant={cashier.isActive ? "default" : "destructive"}>
                           {cashier.isActive ? "Activo" : "Inactivo"}
                         </Badge>
                       </div>

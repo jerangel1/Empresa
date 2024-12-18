@@ -39,7 +39,7 @@ export function RegisterDetailsModal({
             <CardContent>
               <div className="flex items-center justify-between">
                 <span className="font-medium">Estado:</span>
-                <Badge variant={register.isActive ? "success" : "destructive"}>
+                <Badge variant={register.isActive ? "default" : "destructive"}>
                   {register.isActive ? "Activa" : "Inactiva"}
                 </Badge>
               </div>
@@ -70,7 +70,7 @@ export function RegisterDetailsModal({
                       </TableCell>
                       <TableCell>{cashier.role}</TableCell>
                       <TableCell>
-                        <Badge variant={cashier.isActive ? "success" : "destructive"}>
+                        <Badge variant={cashier.isActive ? "default" : "destructive"}>
                           {cashier.isActive ? "Activo" : "Inactivo"}
                         </Badge>
                       </TableCell>

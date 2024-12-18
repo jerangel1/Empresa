@@ -132,7 +132,7 @@ export function BranchDetailsCard({ branch }: BranchDetailsCardProps) {
                       <h4 className="font-medium mb-2 flex items-center">
                         <CreditCard className="w-4 h-4 mr-2" />
                         {register.name}
-                        <Badge variant={register.isActive ? "success" : "destructive"} className="ml-2">
+                        <Badge variant={register.isActive ? "default" : "destructive"} className="ml-2">
                           {register.isActive ? "Activa" : "Inactiva"}
                         </Badge>
                       </h4>
@@ -221,7 +221,7 @@ export function BranchDetailsCard({ branch }: BranchDetailsCardProps) {
                       )
                     )?.name}</TableCell>
                     <TableCell>
-                      <Badge variant={employee.isActive ? "success" : "destructive"}>
+                      <Badge variant={employee.isActive ? "default" : "destructive"}>
                         {employee.isActive ? "Activo" : "Inactivo"}
                       </Badge>
                     </TableCell>
