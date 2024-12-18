@@ -16,7 +16,7 @@ export const metadata = {
   robots: 'index, follow',
   themeColor: '#2563eb',
   viewport: 'width=device-width, initial-scale=1.0',
-  metadataBase: new URL('https://empresapro-dashboard.com'),
+  metadataBase: new URL('https://v0-empresa-dashboard-wu2kiultvzm.vercel.app'),
   icons: {
     icon: [
       { url: '/logo.png', sizes: '32x32', type: 'image/png' },
@@ -37,13 +37,13 @@ export const metadata = {
     url: '/',
     images: [
       {
-        url: 'public/logo.png',
+        url: '/logo.png',
         width: 1200,
         height: 630,
         alt: 'EmpresaPro Dashboard - Visualización Inteligente de Datos',
       },
       {
-        url: 'public/logo.png',
+        url: '/logo.png',
         width: 600,
         height: 600,
         alt: 'EmpresaPro - Excelencia en Gestión Empresarial',
@@ -51,8 +51,8 @@ export const metadata = {
     ],
     locale: 'es_ES',
     countryName: 'Venezuela',
-    emails: ['contacto@empresapro.com'],
-    phoneNumbers: ['+58 123-456-7890'],
+    emails: ['devops@jesus-rangel.com'],
+    phoneNumbers: ['+58 4122179094'],
   },
   twitter: {
     card: 'summary_large_image',
