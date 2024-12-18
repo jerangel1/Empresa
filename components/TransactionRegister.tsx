@@ -16,25 +16,14 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { TagFormModal } from "./tag-form-modal"
 import { TransactionFormModal } from "./transaction-form-modal"
 import { TransactionDetailsModal } from "./transaction-details-modal"
-
-type Transaction = {
-  id: string
-  title: string
-  date: string
-  amount: number
-  type: 'income' | 'expense'
-  paymentType?: string
-  expenseType?: string
-  user: string
-  description: string
-}
+import { Transaction } from "@/app/types/finance"
 
 const INITIAL_TRANSACTIONS: Transaction[] = [
-  { id: "000001", title: "Venta de productos", date: "2023-12-01", amount: 5000, type: "income", paymentType: "Efectivo", user: "Ana García", description: "Venta de productos en la tienda principal" },
-  { id: "000002", title: "Pago de nómina", date: "2023-12-02", amount: 3000, type: "expense", expenseType: "Salarios", user: "Carlos Rodríguez", description: "Pago de salarios a empleados" },
-  { id: "000003", title: "Ingreso por servicios", date: "2023-12-03", amount: 2500, type: "income", paymentType: "Tarjeta", user: "María López", description: "Ingresos por servicios de consultoría" },
-  { id: "000004", title: "Compra de suministros", date: "2023-12-04", amount: 1000, type: "expense", expenseType: "Otros", user: "Juan Pérez", description: "Compra de suministros de oficina" },
-  { id: "000005", title: "Pago de alquiler", date: "2023-12-05", amount: 1500, type: "expense", expenseType: "Servicios", user: "Laura Martínez", description: "Pago mensual de alquiler de local" },
+  { id: "000001", title: "Venta de productos", date: "2023-12-01", amount: 5000, type: "income", paymentMethod: "Efectivo", tag: "Ventas", paymentType: "Efectivo", user: "Ana García", description: "Venta de productos en la tienda principal" },
+  { id: "000002", title: "Pago de nómina", date: "2023-12-02", amount: 3000, type: "expense", paymentMethod: "Transferencia", tag: "Nómina", expenseType: "Salarios", user: "Carlos Rodríguez", description: "Pago de salarios a empleados" },
+  { id: "000003", title: "Ingreso por servicios", date: "2023-12-03", amount: 2500, type: "income", paymentMethod: "Tarjeta", tag: "Servicios", paymentType: "Tarjeta", user: "María López", description: "Ingresos por servicios de consultoría" },
+  { id: "000004", title: "Compra de suministros", date: "2023-12-04", amount: 1000, type: "expense", paymentMethod: "Efectivo", tag: "Suministros", expenseType: "Otros", user: "Juan Pérez", description: "Compra de suministros de oficina" },
+  { id: "000005", title: "Pago de alquiler", date: "2023-12-05", amount: 1500, type: "expense", paymentMethod: "Transferencia", tag: "Alquiler", expenseType: "Servicios", user: "Laura Martínez", description: "Pago mensual de alquiler de local" },
 ]
 
 export function TransactionRegister() {
@@ -173,4 +162,3 @@ export function TransactionRegister() {
     </div>
   )
 }
-

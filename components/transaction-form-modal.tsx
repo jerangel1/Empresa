@@ -22,7 +22,7 @@ const branches = [
   { id: 'sucursal-centro', name: 'Sucursal Centro' },
 ]
 
-const areasByBranch = {
+const areasByBranch: { [key: string]: { id: string; name: string; }[] } = {
   'sucursal-norte': [
     { id: 'area-panaderia-norte', name: 'Panadería' },
     { id: 'area-carniceria-norte', name: 'Carnicería' },
@@ -37,7 +37,7 @@ const areasByBranch = {
   ],
 }
 
-const registersByArea = {
+const registersByArea: { [key: string]: { id: string; name: string; }[] } = {
   'area-panaderia-norte': [
     { id: 'caja-1-panaderia-norte', name: 'Caja 1' },
     { id: 'caja-2-panaderia-norte', name: 'Caja 2' },
@@ -192,7 +192,7 @@ export function TransactionFormModal({ isOpen, onClose, onSubmit, defaultType }:
                 <SelectValue placeholder="Seleccionar título" />
               </SelectTrigger>
               <SelectContent>
-                {(type === 'income' ? incomeTags : expenseTags).map((tag) => (
+                {(type === 'income' ? incomeTags : expenseTags).map((tag: { id: string; name: string; }) => (
                   <SelectItem key={tag.id} value={tag.name}>{tag.name}</SelectItem>
                 ))}
               </SelectContent>
@@ -215,7 +215,7 @@ export function TransactionFormModal({ isOpen, onClose, onSubmit, defaultType }:
                   <SelectValue placeholder="Seleccionar sucursal" />
                 </SelectTrigger>
                 <SelectContent>
-                  {branches.map((b) => (
+                  {branches.map((b: { id: string; name: string; }) => (
                     <SelectItem key={b.id} value={b.id}>{b.name}</SelectItem>
                   ))}
                 </SelectContent>
@@ -228,7 +228,7 @@ export function TransactionFormModal({ isOpen, onClose, onSubmit, defaultType }:
                   <SelectValue placeholder="Seleccionar área" />
                 </SelectTrigger>
                 <SelectContent>
-                  {branch && areasByBranch[branch].map((a) => (
+                  {branch && areasByBranch[branch].map((a: { id: string; name: string; }) => (
                     <SelectItem key={a.id} value={a.id}>{a.name}</SelectItem>
                   ))}
                 </SelectContent>
@@ -241,7 +241,7 @@ export function TransactionFormModal({ isOpen, onClose, onSubmit, defaultType }:
                   <SelectValue placeholder="Seleccionar caja" />
                 </SelectTrigger>
                 <SelectContent>
-                  {area && registersByArea[area].map((r) => (
+                  {area && registersByArea[area].map((r: { id: string; name: string; }) => (
                     <SelectItem key={r.id} value={r.id}>{r.name}</SelectItem>
                   ))}
                 </SelectContent>
@@ -275,4 +275,3 @@ export function TransactionFormModal({ isOpen, onClose, onSubmit, defaultType }:
     </Dialog>
   )
 }
-
