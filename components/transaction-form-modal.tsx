@@ -8,11 +8,12 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { format } from "date-fns"
+import { Transaction } from "@/app/types/finance"
 
 interface TransactionFormModalProps {
   isOpen: boolean
   onClose: () => void
-  onSubmit: (transaction: any) => void
+  onSubmit: (transaction: Omit<Transaction, 'id' | 'date'>) => void
   defaultType: 'income' | 'expense'
 }
 
@@ -89,6 +90,8 @@ export function TransactionFormModal({ isOpen, onClose, onSubmit, defaultType }:
   const [branch, setBranch] = useState<string>("")
   const [area, setArea] = useState<string>("")
   const [register, setRegister] = useState<string>("")
+  const [paymentMethod, setPaymentMethod] = useState<string>("")
+  const [tag, setTag] = useState<string>("")
 
   useEffect(() => {
     setType(defaultType)
@@ -120,6 +123,8 @@ export function TransactionFormModal({ isOpen, onClose, onSubmit, defaultType }:
       branch,
       area,
       register,
+      paymentMethod,
+      tag,
     }
     onSubmit(transaction)
     onClose()
@@ -174,6 +179,34 @@ export function TransactionFormModal({ isOpen, onClose, onSubmit, defaultType }:
                 </Select>
               </div>
             )}
+            <div className="space-y-2">
+              <Label htmlFor="paymentMethod">Método de Pago</Label>
+              <Select value={paymentMethod} onValueChange={setPaymentMethod}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Seleccionar método de pago" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Efectivo">Efectivo</SelectItem>
+                  <SelectItem value="Tarjeta">Tarjeta</SelectItem>
+                  <SelectItem value="Transferencia">Transferencia</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="tag">Etiqueta</Label>
+              <Select value={tag} onValueChange={setTag}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Seleccionar etiqueta" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Ventas">Ventas</SelectItem>
+                  <SelectItem value="Servicios">Servicios</SelectItem>
+                  <SelectItem value="Nómina">Nómina</SelectItem>
+                  <SelectItem value="Suministros">Suministros</SelectItem>
+                  <SelectItem value="Alquiler">Alquiler</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
           <div className="space-y-2">
             <Label htmlFor="amount">Monto</Label>

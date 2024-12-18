@@ -1,4 +1,4 @@
-import { subDays, subHours, eachDayOfInterval, eachWeekOfInterval, eachMonthOfInterval, eachHourOfInterval, startOfDay, endOfDay, startOfWeek, endOfWeek, startOfMonth, endOfMonth, startOfYear, endOfYear, format } from 'date-fns';
+import { subDays, subHours, eachDayOfInterval, eachWeekOfInterval, eachMonthOfInterval, eachHourOfInterval, startOfDay, endOfDay, startOfWeek, endOfWeek, startOfMonth, endOfMonth, startOfYear, endOfYear, format, subYears, eachYearOfInterval } from 'date-fns';
 import { es } from 'date-fns/locale';
 
 interface FinancialData {
@@ -46,7 +46,7 @@ const generateMonthlyData = (start: Date, end: Date): FinancialData['incomeData'
 const generateYearlyData = (years: number): FinancialData => {
   const end = new Date();
   const start = subYears(end, years - 1);
-  const yearlyData = eachYearOfInterval({ start, end }).map(date => {
+  const yearlyData = eachYearOfInterval({ start, end }).map((date: Date) => {
     const ingresos = Math.floor(Math.random() * 2000000) + 1000000;
     const egresos = Math.floor(Math.random() * 1500000) + 800000;
     return {
@@ -56,8 +56,8 @@ const generateYearlyData = (years: number): FinancialData => {
     };
   });
 
-  const totalIncome = yearlyData.reduce((sum, year) => sum + year.ingresos, 0);
-  const totalExpenses = yearlyData.reduce((sum, year) => sum + year.egresos, 0);
+  const totalIncome = yearlyData.reduce((sum: number, year) => sum + year.ingresos, 0);
+  const totalExpenses = yearlyData.reduce((sum: number, year) => sum + year.egresos, 0);
   const netProfit = totalIncome - totalExpenses;
 
   return {
@@ -165,8 +165,8 @@ export const getFinancialData = (period: 'day' | 'week' | 'month' | 'year' | 'cu
       incomeData = generateHourlyData(start, end);
   }
 
-  const totalIncome = incomeData.reduce((sum, item) => sum + item.ingresos, 0);
-  const totalExpenses = incomeData.reduce((sum, item) => sum + item.egresos, 0);
+  const totalIncome = incomeData.reduce((sum: number, item) => sum + item.ingresos, 0);
+  const totalExpenses = incomeData.reduce((sum: number, item) => sum + item.egresos, 0);
   const netProfit = totalIncome - totalExpenses;
 
   return {
@@ -179,4 +179,3 @@ export const getFinancialData = (period: 'day' | 'week' | 'month' | 'year' | 'cu
     salesData: generateSalesData(totalIncome),
   };
 };
-
