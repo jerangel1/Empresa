@@ -37,13 +37,13 @@ export const metadata = {
     url: '/',
     images: [
       {
-        url: '/logo.png',
+        url: 'public/logo.png',
         width: 1200,
         height: 630,
         alt: 'EmpresaPro Dashboard - Visualización Inteligente de Datos',
       },
       {
-        url: '/logo.png',
+        url: 'public/logo.png',
         width: 600,
         height: 600,
         alt: 'EmpresaPro - Excelencia en Gestión Empresarial',
