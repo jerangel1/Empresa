@@ -6,7 +6,7 @@ import Header from './components/Header'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Fineazily - Dashboard Empresarial',
+  title: 'Dashboard Empresarial',
   description: 'Sistema de gestión empresarial',
 }
 
