@@ -13,45 +13,58 @@ import { format } from "date-fns"
 import { es } from 'date-fns/locale'
 import { Tag, Download, Plus, Eye } from 'lucide-react'
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { TagFormModal } from "./tag-form-modal"
 import { TransactionFormModal } from "./transaction-form-modal"
 import { TransactionDetailsModal } from "./transaction-details-modal"
-
-type Transaction = {
-  id: string
-  title: string
-  date: string
-  amount: number
-  type: 'income' | 'expense'
-  paymentType?: string
-  expenseType?: string
-  user: string
-  description: string
-}
+import { Transaction } from "../types/finance"
 
 const INITIAL_TRANSACTIONS: Transaction[] = [
-  { id: "000001", title: "Venta de productos", date: "2023-12-01", amount: 5000, type: "income", paymentType: "Efectivo", user: "Ana García", description: "Venta de productos en la tienda principal" },
-  { id: "000002", title: "Pago de nómina", date: "2023-12-02", amount: 3000, type: "expense", expenseType: "Salarios", user: "Carlos Rodríguez", description: "Pago de salarios a empleados" },
-  { id: "000003", title: "Ingreso por servicios", date: "2023-12-03", amount: 2500, type: "income", paymentType: "Tarjeta", user: "María López", description: "Ingresos por servicios de consultoría" },
-  { id: "000004", title: "Compra de suministros", date: "2023-12-04", amount: 1000, type: "expense", expenseType: "Otros", user: "Juan Pérez", description: "Compra de suministros de oficina" },
-  { id: "000005", title: "Pago de alquiler", date: "2023-12-05", amount: 1500, type: "expense", expenseType: "Servicios", user: "Laura Martínez", description: "Pago mensual de alquiler de local" },
+  { 
+    id: "000001", 
+    title: "Venta de productos", 
+    date: "2023-12-01", 
+    amount: 5000, 
+    type: "income", 
+    paymentMethod: "Efectivo",
+    tag: "Ventas",
+    paymentType: "Efectivo", 
+    user: "Ana García", 
+    description: "Venta de productos en la tienda principal" 
+  },
+  { 
+    id: "000002", 
+    title: "Pago de nómina", 
+    date: "2023-12-02", 
+    amount: 3000, 
+    type: "expense", 
+    paymentMethod: "Transferencia",
+    tag: "Salarios",
+    expenseType: "Salarios", 
+    user: "Carlos Rodríguez", 
+    description: "Pago de salarios a empleados" 
+  },
+  { 
+    id: "000003", 
+    title: "Ingreso por servicios", 
+    date: "2023-12-03", 
+    amount: 2500, 
+    type: "income", 
+    paymentMethod: "Tarjeta",
+    tag: "Servicios",
+    paymentType: "Tarjeta", 
+    user: "María López", 
+    description: "Ingresos por servicios de consultoría" 
+  }
 ]
 
 export function TransactionRegister() {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date())
   const [transactions, setTransactions] = useState<Transaction[]>(INITIAL_TRANSACTIONS)
   const [activeTab, setActiveTab] = useState<'income' | 'expense'>('income')
-  const [isTagModalOpen, setIsTagModalOpen] = useState(false)
   const [isTransactionModalOpen, setIsTransactionModalOpen] = useState(false)
   const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null)
 
   const filteredTransactions = transactions.filter(t => t.type === activeTab)
   const totalAmount = filteredTransactions.reduce((sum, transaction) => sum + transaction.amount, 0)
-
-  const handleAddTag = (tag: { name: string; description: string }) => {
-    console.log("New tag:", tag)
-    // Here you would typically update your tags list or send the data to your backend
-  }
 
   const handleAddTransaction = (transaction: Omit<Transaction, 'id' | 'date'>) => {
     const newTransaction = {
@@ -77,10 +90,6 @@ export function TransactionRegister() {
           </TabsList>
         </Tabs>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm" onClick={() => setIsTagModalOpen(true)}>
-            <Tag className="w-4 h-4 mr-2" />
-            Agregar Tag
-          </Button>
           <Popover>
             <PopoverTrigger asChild>
               <Button variant="outline" size="sm">
@@ -154,11 +163,6 @@ export function TransactionRegister() {
           </TableBody>
         </Table>
       </div>
-      <TagFormModal
-        isOpen={isTagModalOpen}
-        onClose={() => setIsTagModalOpen(false)}
-        onSubmit={handleAddTag}
-      />
       <TransactionFormModal
         isOpen={isTransactionModalOpen}
         onClose={() => setIsTransactionModalOpen(false)}
@@ -173,4 +177,3 @@ export function TransactionRegister() {
     </div>
   )
 }
-

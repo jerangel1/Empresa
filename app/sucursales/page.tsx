@@ -38,6 +38,7 @@ const INITIAL_BRANCHES: Branch[] = [
                 name: "Juan Pérez",
                 photoUrl: "/placeholder.svg",
                 isActive: true,
+                role: "cashier"
               },
             ],
           },
@@ -51,6 +52,7 @@ const INITIAL_BRANCHES: Branch[] = [
                 name: "María López",
                 photoUrl: "/placeholder.svg",
                 isActive: true,
+                role: "cashier"
               },
             ],
           },
@@ -70,6 +72,7 @@ const INITIAL_BRANCHES: Branch[] = [
                 name: "Pedro Sánchez",
                 photoUrl: "/placeholder.svg",
                 isActive: true,
+                role: "cashier"
               },
             ],
           },
@@ -102,6 +105,7 @@ const INITIAL_BRANCHES: Branch[] = [
                 name: "Ana Martínez",
                 photoUrl: "/placeholder.svg",
                 isActive: true,
+                role: "cashier"
               },
             ],
           },
@@ -134,6 +138,7 @@ const INITIAL_BRANCHES: Branch[] = [
                 name: "Roberto Díaz",
                 photoUrl: "/placeholder.svg",
                 isActive: true,
+                role: "cashier"
               },
             ],
           },
@@ -174,10 +179,22 @@ export default function Sucursales() {
     setIsFormOpen(false)
   }
 
-  const handleEditBranch = (branch: Branch) => {
-    setSelectedBranch(branch)
-    setIsFormOpen(true)
-  }
+  const handleEditBranch = (data: Partial<Branch>) => {
+    if (!selectedBranch) return;
+    
+    const updatedBranch: Branch = {
+      ...selectedBranch,
+      name: data.name ?? selectedBranch.name,
+      address: data.address ?? selectedBranch.address,
+      areas: data.areas ?? selectedBranch.areas,
+    };
+    
+    setBranches(branches.map(branch => 
+      branch.id === selectedBranch.id ? updatedBranch : branch
+    ));
+    setIsFormOpen(false);
+    setSelectedBranch(undefined);
+  };
 
   const handleDeleteBranch = (branchId: string) => {
     setBranches(branches.filter((branch) => branch.id !== branchId))
@@ -244,7 +261,7 @@ export default function Sucursales() {
                 <BranchCard
                   key={branch.id}
                   branch={branch}
-                  onEdit={handleEditBranch}
+                  onEdit={() => handleEditBranch(branch)}
                   onDelete={handleDeleteBranch}
                 />
               ))}
@@ -296,4 +313,3 @@ export default function Sucursales() {
     </div>
   )
 }
-

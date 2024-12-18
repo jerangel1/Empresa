@@ -67,7 +67,7 @@ export function EmployeeDetailsModal({
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">Estado:</span>
-              <Badge variant={employee.isActive ? "success" : "destructive"}>
+              <Badge variant={employee.isActive ? "default" : "destructive"}>
                 {employee.isActive ? "Activo" : "Inactivo"}
               </Badge>
             </div>

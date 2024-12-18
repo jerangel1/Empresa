@@ -59,7 +59,8 @@ export function DateFilter({ onFilterChange }: { onFilterChange: (filter: { type
     onFilterChange({ type: value, from, to })
   }
 
-  const handleDateRangeChange = (range: { from: Date | undefined; to: Date | undefined }) => {
+  const handleDateRangeChange = (range: { from: Date | undefined; to: Date | undefined } | undefined) => {
+    if (!range) return;
     setDateRange(range)
     if (range.from && range.to) {
       onFilterChange({ 
@@ -110,7 +111,7 @@ export function DateFilter({ onFilterChange }: { onFilterChange: (filter: { type
               mode="range"
               defaultMonth={dateRange?.from}
               selected={dateRange}
-              onSelect={handleDateRangeChange}
+              //onSelect={handleDateRangeChange}
               numberOfMonths={2}
               locale={es}
             />
@@ -120,4 +121,3 @@ export function DateFilter({ onFilterChange }: { onFilterChange: (filter: { type
     </div>
   )
 }
-

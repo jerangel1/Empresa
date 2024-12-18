@@ -56,7 +56,7 @@ export function RoleFormModal({
     e.preventDefault()
     onSubmit({
       name,
-      displayName,
+      //displayName,
       description,
       permissions: selectedPermissions,
     })

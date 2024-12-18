@@ -59,7 +59,7 @@ export function AreaDetailsModal({
                     <TableRow key={register.id}>
                       <TableCell className="font-medium">{register.name}</TableCell>
                       <TableCell>
-                        <Badge variant={register.isActive ? "success" : "destructive"}>
+                        <Badge variant={register.isActive ? "default" : "destructive"}>
                           {register.isActive ? "Activa" : "Inactiva"}
                         </Badge>
                       </TableCell>
@@ -71,7 +71,7 @@ export function AreaDetailsModal({
                               <AvatarFallback>{cashier.name.charAt(0)}</AvatarFallback>
                             </Avatar>
                             <span>{cashier.name}</span>
-                            <Badge variant={cashier.isActive ? "success" : "destructive"}>
+                            <Badge variant={cashier.isActive ? "default" : "destructive"}>
                               {cashier.isActive ? "Activo" : "Inactivo"}
                             </Badge>
                           </div>

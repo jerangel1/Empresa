@@ -16,13 +16,16 @@ interface TransactionFormModalProps {
   defaultType: 'income' | 'expense'
 }
 
+type BranchId = 'sucursal-norte' | 'sucursal-sur' | 'sucursal-centro';
+type AreaId = 'area-panaderia-norte' | 'area-carniceria-norte' | 'area-fruteria-sur' | 'area-lacteos-sur' | 'area-abarrotes-centro' | 'area-electronica-centro';
+
 const branches = [
-  { id: 'sucursal-norte', name: 'Sucursal Norte' },
-  { id: 'sucursal-sur', name: 'Sucursal Sur' },
-  { id: 'sucursal-centro', name: 'Sucursal Centro' },
+  { id: 'sucursal-norte' as BranchId, name: 'Sucursal Norte' },
+  { id: 'sucursal-sur' as BranchId, name: 'Sucursal Sur' },
+  { id: 'sucursal-centro' as BranchId, name: 'Sucursal Centro' },
 ]
 
-const areasByBranch = {
+const areasByBranch: Record<BranchId, { id: AreaId; name: string; }[]> = {
   'sucursal-norte': [
     { id: 'area-panaderia-norte', name: 'Panadería' },
     { id: 'area-carniceria-norte', name: 'Carnicería' },
@@ -37,7 +40,7 @@ const areasByBranch = {
   ],
 }
 
-const registersByArea = {
+const registersByArea: Record<AreaId, { id: string; name: string; }[]> = {
   'area-panaderia-norte': [
     { id: 'caja-1-panaderia-norte', name: 'Caja 1' },
     { id: 'caja-2-panaderia-norte', name: 'Caja 2' },
@@ -87,7 +90,7 @@ export function TransactionFormModal({ isOpen, onClose, onSubmit, defaultType }:
   const [title, setTitle] = useState<string>("")
   const [description, setDescription] = useState<string>("")
   const [branch, setBranch] = useState<string>("")
-  const [area, setArea] = useState<string>("")
+  const [area, setArea] = useState<AreaId | "">("")
   const [register, setRegister] = useState<string>("")
 
   useEffect(() => {
@@ -192,7 +195,7 @@ export function TransactionFormModal({ isOpen, onClose, onSubmit, defaultType }:
                 <SelectValue placeholder="Seleccionar título" />
               </SelectTrigger>
               <SelectContent>
-                {(type === 'income' ? incomeTags : expenseTags).map((tag) => (
+                {(type === 'income' ? incomeTags : expenseTags).map((tag: { id: string; name: string; }) => (
                   <SelectItem key={tag.id} value={tag.name}>{tag.name}</SelectItem>
                 ))}
               </SelectContent>
@@ -215,7 +218,7 @@ export function TransactionFormModal({ isOpen, onClose, onSubmit, defaultType }:
                   <SelectValue placeholder="Seleccionar sucursal" />
                 </SelectTrigger>
                 <SelectContent>
-                  {branches.map((b) => (
+                  {branches.map((b: { id: BranchId; name: string; }) => (
                     <SelectItem key={b.id} value={b.id}>{b.name}</SelectItem>
                   ))}
                 </SelectContent>
@@ -223,12 +226,12 @@ export function TransactionFormModal({ isOpen, onClose, onSubmit, defaultType }:
             </div>
             <div className="space-y-2">
               <Label htmlFor="area">Área</Label>
-              <Select value={area} onValueChange={setArea} disabled={!branch}>
+              <Select value={area} onValueChange={(value) => setArea(value as AreaId | "")} disabled={!branch}>
                 <SelectTrigger>
                   <SelectValue placeholder="Seleccionar área" />
                 </SelectTrigger>
                 <SelectContent>
-                  {branch && areasByBranch[branch].map((a) => (
+                  {branch && areasByBranch[branch as BranchId].map((a: { id: AreaId; name: string; }) => (
                     <SelectItem key={a.id} value={a.id}>{a.name}</SelectItem>
                   ))}
                 </SelectContent>
@@ -241,7 +244,7 @@ export function TransactionFormModal({ isOpen, onClose, onSubmit, defaultType }:
                   <SelectValue placeholder="Seleccionar caja" />
                 </SelectTrigger>
                 <SelectContent>
-                  {area && registersByArea[area].map((r) => (
+                  {area && registersByArea[area as AreaId].map((r: { id: string; name: string; }) => (
                     <SelectItem key={r.id} value={r.id}>{r.name}</SelectItem>
                   ))}
                 </SelectContent>
@@ -275,4 +278,3 @@ export function TransactionFormModal({ isOpen, onClose, onSubmit, defaultType }:
     </Dialog>
   )
 }
-

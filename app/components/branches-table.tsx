@@ -16,9 +16,11 @@ interface BranchesTableProps {
   branches: Branch[]
   onViewDetails: (branch: Branch) => void
   onViewEmployees: (branch: Branch) => void
+  onEdit: (branch: Branch) => void
+  onDelete: (branchId: string) => void
 }
 
-export function BranchesTable({ branches, onViewDetails, onViewEmployees }: BranchesTableProps) {
+export function BranchesTable({ branches, onViewDetails, onViewEmployees, onEdit, onDelete }: BranchesTableProps) {
   return (
     <div className="rounded-md border">
       <Table>
@@ -72,4 +74,3 @@ export function BranchesTable({ branches, onViewDetails, onViewEmployees }: Bran
     </div>
   )
 }
-

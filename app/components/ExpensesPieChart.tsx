@@ -16,6 +16,7 @@ const expensesData = [
 
 interface ExpensesPieChartProps {
   onCategoryClick: (category: string) => void;
+  data: { name: string; value: number; color: string; }[]; 
 }
 
 export function ExpensesPieChart({ onCategoryClick }: ExpensesPieChartProps) {

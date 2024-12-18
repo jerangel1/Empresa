@@ -121,10 +121,16 @@ export default function Personal() {
     setIsFormOpen(false)
   }
 
-  const handleEditEmployee = (employee: Employee) => {
-    setEditingEmployee(employee)
-    setIsFormOpen(true)
-  }
+  const handleEditEmployee = (data: Partial<Employee>) => {
+    if (editingEmployee) {
+        const updatedEmployee: Employee = {
+            ...editingEmployee,
+            ...data,
+        };
+        setEmployees(employees.map(emp => emp.id === updatedEmployee.id ? updatedEmployee : emp));
+        setIsFormOpen(false);
+    }
+};
 
   const handleDeleteEmployee = (employeeId: string) => {
     setEmployees(employees.filter((emp) => emp.id !== employeeId))
@@ -250,7 +256,7 @@ export default function Personal() {
                         {format(new Date(employee.startDate), "PP", { locale: es })}
                       </TableCell>
                       <TableCell>
-                        <Badge variant={employee.isActive ? "success" : "destructive"}>
+                        <Badge variant={employee.isActive ? "default" : "destructive"}>
                           {employee.isActive ? "Activo" : "Inactivo"}
                         </Badge>
                       </TableCell>

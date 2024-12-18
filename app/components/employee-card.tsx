@@ -30,7 +30,7 @@ export function EmployeeCard({ employee, onViewDetails }: EmployeeCardProps) {
               <h3 className="font-semibold text-lg">{employee.name}</h3>
               <p className="text-sm text-muted-foreground">{employee.position}</p>
             </div>
-            <Badge variant={employee.isActive ? "success" : "destructive"}>
+            <Badge variant={employee.isActive ? "default" : "destructive"}>
               {employee.isActive ? "Activo" : "Inactivo"}
             </Badge>
           </div>

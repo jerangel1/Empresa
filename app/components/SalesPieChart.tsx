@@ -11,12 +11,12 @@ const salesData = [
   { name: 'Productos E', value: 10, color: '#FFEEAD' },
 ]
 
-export function SalesPieChart() {
-  const total = salesData.reduce((sum, item) => sum + item.value, 0)
+export function SalesPieChart({ data }: { data: { name: string; value: number; color: string; }[] }) {
+  const total = data.reduce((sum, item) => sum + item.value, 0)
 
   // Split data into two columns
-  const midPoint = Math.ceil(salesData.length / 2);
-  const leftColumnData = salesData.slice(0, midPoint);
+  const midPoint = Math.ceil(data.length / 2);
+  const leftColumnData = data.slice(0, midPoint);
   const rightColumnData = salesData.slice(midPoint);
 
   return (
