@@ -56,12 +56,12 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@empresapro',
-    creator: '@empresapro',
+    site: '@jerangel1',
+    creator: '@jerangel1',
     title: 'EmpresaPro | Dashboard Empresarial Inteligente 🎯',
     description: '🔥 Revoluciona tu gestión empresarial con análisis predictivo, KPIs personalizados y reportes en tiempo real. ¡Toma decisiones más inteligentes!',
     images: {
-      url: '/logo.png',
+      url: 'https://v0-empresa-dashboard-wu2kiultvzm.vercel.app/logo.png',
       alt: 'EmpresaPro Dashboard - Innovación en Gestión Empresarial'
     },
   },
