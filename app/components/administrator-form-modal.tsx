@@ -78,7 +78,7 @@ export function AdministratorFormModal({
   }
 
   const togglePermission = (permission: string) => {
-    setAdditionalPermissions(prev => 
+    setAdditionalPermissions(prev =>
       prev.includes(permission)
         ? prev.filter(p => p !== permission)
         : [...prev, permission]
@@ -149,7 +149,7 @@ export function AdministratorFormModal({
               <SelectContent>
                 {roles.map((role) => (
                   <SelectItem key={role.id} value={role.id}>
-                    {role.name || role.name}
+                    {role.displayName || role.name}
                   </SelectItem>
                 ))}
               </SelectContent>

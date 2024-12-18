@@ -18,6 +18,7 @@ export interface ActivityLog {
 export interface Role {
   id: string;
   name: string;
+  displayName: string;
   permissions: string[];
   description: string;
 }

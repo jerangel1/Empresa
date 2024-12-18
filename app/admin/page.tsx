@@ -82,18 +82,21 @@ const INITIAL_ROLES: Role[] = [
   {
     id: "1",
     name: "Super Admin",
+    displayName: "Super Admin",
     description: "Acceso completo a todas las funciones del sistema",
     permissions: ["crear_usuarios", "editar_usuarios", "eliminar_usuarios", "ver_registros", "gestionar_finanzas", "gestionar_sucursales", "gestionar_inventario"],
   },
   {
     id: "2",
     name: "Admin",
+    displayName: "Admin",
     description: "Acceso a la mayoría de las funciones, excepto eliminar usuarios",
     permissions: ["crear_usuarios", "editar_usuarios", "ver_registros", "gestionar_finanzas", "gestionar_sucursales"],
   },
   {
     id: "3",
     name: "Gerente",
+    displayName:"Gerente",
     description: "Acceso limitado a funciones específicas de gestión",
     permissions: ["ver_registros", "gestionar_sucursales", "gestionar_inventario"],
   },
