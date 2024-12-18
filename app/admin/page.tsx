@@ -156,9 +156,13 @@ export default function Admin() {
     setRoles([...roles, newRole])
   }
 
-  const handleEditRole = (updatedRole: Role) => {
-    setRoles(roles.map(role => role.id === updatedRole.id ? updatedRole : role))
-    setEditingRole(null)
+  const handleEditRole = (updatedRole: Omit<Role, "id">) => {
+    const roleWithId: Role = {
+      id: editingRole?.id || "",
+      ...updatedRole,
+    };
+    setRoles(roles.map(role => role.id === roleWithId.id ? roleWithId : role));
+    setEditingRole(null);
   }
 
   return (
@@ -314,7 +318,7 @@ export default function Admin() {
         isOpen={!!editingRole}
         onClose={() => setEditingRole(null)}
         onSubmit={handleEditRole}
-        initialRole={editingRole}
+        //initialRole={editingRole}
       />
 
       <Dialog open={!!selectedAdmin} onOpenChange={() => setSelectedAdmin(null)}>
@@ -357,4 +361,3 @@ export default function Admin() {
     </div>
   )
 }
-

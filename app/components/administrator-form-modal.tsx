@@ -149,7 +149,7 @@ export function AdministratorFormModal({
               <SelectContent>
                 {roles.map((role) => (
                   <SelectItem key={role.id} value={role.id}>
-                    {role.displayName || role.name}
+                    {role.name || role.name}
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -158,7 +158,7 @@ export function AdministratorFormModal({
           {selectedRole && (
             <Card>
               <CardHeader>
-                <CardTitle>{roles.find(r => r.id === selectedRole)?.displayName || roles.find(r => r.id === selectedRole)?.name}</CardTitle>
+                <CardTitle>{roles.find(r => r.id === selectedRole)?.name || roles.find(r => r.id === selectedRole)?.name}</CardTitle>
                 <CardDescription>{roles.find(r => r.id === selectedRole)?.description}</CardDescription>
               </CardHeader>
               <CardContent>
