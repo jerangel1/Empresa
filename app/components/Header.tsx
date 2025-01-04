@@ -34,15 +34,15 @@ export default function Header() {
   ]
 
   const user = {
-    name: "John",
-    lastName: "Doe",
-    email: "john.doe@example.com",
-    photoUrl: "https://github.com/shadcn.png",
+    name: "Jesus ",
+    lastName: "Rangel",
+    email: "devops@jesus-rangel.com",
+    photoUrl: "https://github.com/jerangel1",
   }
 
   return (
     <header className="bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between">
-      <h1 className="text-2xl font-bold text-primary">Empresa</h1>
+      <h1 className="text-2xl font-bold text-primary">Nombre Empresa</h1>
       <div className="flex items-center space-x-4">
         <Dialog open={showNotifications} onOpenChange={setShowNotifications}>
           <DialogTrigger asChild>
